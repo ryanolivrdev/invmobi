@@ -24,7 +24,6 @@ CREATE TABLE historic (
    valor_compra_imovel DECIMAL(16,2) NOT NULL,
    entrada_imovel DECIMAL(16,2) NOT NULL,
    tempo_imovel INTEGER NOT NULL,
-   cenarios DECIMAL(16,2) NOT NULL,
 
   soma_aluguel DECIMAL(16,2) NOT NULL,
   total_pago_pela_compra DECIMAL(16,2) NOT NULL,
