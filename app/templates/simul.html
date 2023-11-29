@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simulação | INVMOBI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='dist/css/output.css') }}" />
+    <script>
+        function irAteSobreNos() {
+          let div = document.getElementById("sobreNos");
+          div.scrollIntoView({ behavior: "smooth" });
+        }
+        function irSimulação(){
+          let div = document.getElementById("simu");
+          div.scrollIntoView({ behavior: "smooth" });
+        }
+  
+        function irHistorico(){
+          window.location.pathname = "/historic"
+        }
+      </script>
+  </head>
+  <body>
+    <header class="absolute inset-x-0 top-0 z-50">
+      <nav
+        class="flex items-center justify-between p-6 lg:px-8"
+        aria-label="Global">
+        <div class="flex lg:flex-1">
+          <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only">Your Company</span>
+            <img
+              class="h-8 w-auto"
+              src="https://jpimg.com.br/uploads/2019/05/irmc3a3os-a-obra-segunda-temporada-netflix.png"
+              alt />
+          </a>
+        </div>
+        <div class="flex lg:hidden">
+          <button
+            type="button"
+            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+          <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Início</a>
+          {% if current_user.is_authenticated %}
+          <a
+            href="/simul"
+            class="text-sm font-semibold leading-6 text-gray-900">Simulação</a>
+          <a
+            href="/historic"
+            class="text-sm font-semibold leading-6 text-gray-900">Histórico</a>
+          {% endif %}
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+          {% if not current_user.is_authenticated %}
+          <a
+            href="/signin"
+            class="text-sm font-semibold leading-6 text-gray-900">Fazer Login
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          {% endif %} {% if current_user.is_authenticated %}
+          <a href="/logout" class="navbar-item"> Logout </a>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+    <section class="relative isolate px-6 lg:px-8" id="simu">
+      <div
+        class="flex flex-col items-center justify-center px-6  mx-auto md:h-screen lg:py-0">
+
+        <a
+          href="/"
+          class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+          INVMOBI
+        </a>
+        <div
+          class="w-[800px] mt-5 bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1
+              class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              Faça uma simulação
+            </h1>
+            <div class="space-y-4 md:space-y-6">
+              <div>
+                <label
+                  for="valor_aluguel_imovel"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Digite
+                  o valor do aluguel do imovel</label>
+                <input
+                  type="number"
+                  name="valor_aluguel_imovel"
+                  id="valor_aluguel_imovel"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="0"
+                  required />
+              </div>
+              <div>
+                <label
+                  for="valor_compra_imovel"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Digite
+                  o valor do imovel</label>
+                <input
+                  type="number"
+                  name="valor_compra_imovel"
+                  id="valor_compra_imovel"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="0"
+                  required />
+              </div>
+              <div>
+                <label
+                  for="entrada_imovel"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Digite
+                  o valor da entrada</label>
+                <input
+                  type="number"
+                  name="entrada_imovel"
+                  id="entrada_imovel"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="0"
+                  required />
+              </div>
+              <div>
+                <label
+                  for="tempo_imovel"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Digite
+                  o tempo em meses</label>
+                <input
+                  type="number"
+                  name="tempo_imovel"
+                  id="tempo_imovel"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="0"
+                  required />
+              </div>
+              <div>
+                <div>
+                  <label
+                    for="cen"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Agora você deve escolher entre dois cenários:</label>
+                  <label
+                    for="cen1"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Cenário 1: banco tem uma taxa baixa e o imóvel está em uma
+                    área valorizada</label>
+                  <label
+                    for="cen2"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Cenário 2: banco tem uma taxa relativamente alta e o imóvel
+                    não encontra-se em uma área valorizada</label>
+                  <label for="cars" class="text-white">Escolha um dos cenários:</label>
+                  <select name="cenarios" id="cenarios">
+                    <option value="1">Cenário 1</option>
+                    <option value="2">Cenário 2</option>
+                  </select>
+                  <br><br>
+                  <script>
+           function enviar() {
+        let invalido = false;
+        
+        const valor_aluguel_imovel = document.getElementById('valor_aluguel_imovel').value;
+         const valor_compra_imovel = document.getElementById('valor_compra_imovel').value;
+         const entrada_imovel = document.getElementById('entrada_imovel').value;
+         const tempo_imovel = document.getElementById('tempo_imovel').value;
+         const cenarios = document.getElementById('cenarios').value;
+        if (Number(entrada_imovel) > Number(valor_compra_imovel) ) {
+           alert('O valor da entrada não pode ser maior que o valor da compra');
+           invalido = true;
+           return;
+        }
+
+
+        if (valor_aluguel_imovel == '' || valor_compra_imovel == '' || entrada_imovel == '' || tempo_imovel == '' || cenarios == '') {
+          alert('Preencha todos os campos!');
+          invalido = true;
+          return;
+        }
+
+        const data = {
+          valor_aluguel_imovel,
+          valor_compra_imovel,
+          entrada_imovel,
+          tempo_imovel,
+          cenarios
+        };
+
+        if (!invalido) {
+          fetch('/calc', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then((response) => {
+            return response.json();
+          }).then((data) => {
+            console.log(data);
+            if (data.status == 'ok') {
+              document.getElementById('resultado').classList.remove('invisible');
+              document.getElementById('soma_aluguel').innerHTML = data.comparacao_tempo[0].toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+              document.getElementById('total_pago_pela_compra').innerHTML = data.comparacao_tempo[1].toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+              document.getElementById('compensar_aluguel').innerHTML = data.comparacao_tempo[2]
+              document.getElementById('opcao').innerHTML = data.opcao
+              document.getElementById('somatorio_aluguel').innerHTML = data.somatorio_aluguel.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+
+
+            } else {
+              alert('Erro ao realizar simulação!');
+            }
+          });
+        }
+
+      }
+        </script>
+
+                </div>
+                <button
+                  type="submit"
+                  value="Submit"
+                  class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  onclick="enviar()">
+                  simular
+                </button>
+
+                
+                <div class="mt-5 flex flex-col items-center justify-center gap-x-6 invisible" id="resultado">
+                  <span class="text-sm font-semibold leading-6 text-white">A soma do aluguel até o tempo desejado: <span id="somatorio_aluguel"""></span></span>
+                  <span class="text-sm font-semibold leading-6 text-white">O total pago pela compra até o tempo desejado: <span id="total_pago_pela_compra"""></span> </span>
+                  <span class="text-sm font-semibold leading-6 text-white">A melhor opção no tempo desejado é:   <span id="opcao"""></span></span>
+                  <span class="text-sm font-semibold leading-6 text-white">O tempo que leva para o aluguel ser mais vantajoso que a compra:  <span id="compensar_aluguel"""></span></span>
+                  <span class="text-sm font-semibold leading-6 text-white">O quanto foi pago de aluguel até o tempo analisado:   <span id="soma_aluguel"""></span></span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </body>
+</html>
